@@ -14,3 +14,4 @@ Jim Pivarski received his Ph.D. in high-energy particle physics from Cornell in 
 
 ### Plan for the day
 
+![](img/plan-for-the-day.png)
