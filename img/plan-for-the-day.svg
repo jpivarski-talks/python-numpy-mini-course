@@ -10,13 +10,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="197.66885mm"
-   height="205.14824mm"
-   viewBox="0 0 197.66885 205.14824"
+   width="247.66885mm"
+   height="255.14824mm"
+   viewBox="0 0 247.66885 255.14824"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="plan-for-the-day.svg">
+   sodipodi:docname="plan-for-the-day.svg"
+   inkscape:export-filename="/home/pivarski/diana/python-numpy-mini-course/img/plan-for-the-day.png"
+   inkscape:export-xdpi="124.855"
+   inkscape:export-ydpi="124.855">
   <defs
      id="defs2">
     <linearGradient
@@ -360,23 +363,23 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="472.34652"
-     inkscape:cy="407.70544"
+     inkscape:cx="566.83471"
+     inkscape:cy="502.19365"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-nodes="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1012"
-     inkscape:window-x="0"
+     inkscape:window-width="954"
+     inkscape:window-height="987"
+     inkscape:window-x="960"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:object-nodes="false"
      inkscape:object-paths="true"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="5" />
+     fit-margin-top="30"
+     fit-margin-left="30"
+     fit-margin-right="30"
+     fit-margin-bottom="30" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -393,7 +396,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(1.8383738,-19.835971)">
+     transform="translate(26.838374,5.1640285)">
     <rect
        y="90.660072"
        x="24.268887"
