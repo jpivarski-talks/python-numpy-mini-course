@@ -1,3 +1,11 @@
+tex/*.aux
+tex/*.nav
+tex/*.out
+tex/*.snm
+tex/*.toc
+tex/01-intro.pdf
+tex/03-ecosystem.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
