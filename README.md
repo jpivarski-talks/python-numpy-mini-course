@@ -49,7 +49,7 @@ export CFLAGS=-fpermissive
 pip install --no-cache-dir pycuda
 ```
 
-General Python programming skills will be assumed (ability to read or write a page-long script without difficulty). Walk through an online tutorial if you need to brush up before the course.
+(3) General Python programming skills will be assumed (ability to read or write a page-long script without difficulty). Walk through an online tutorial if you need to brush up before the course.
 
 Knowedge of the libraries presented here _will not_ be assumed. Come and learn!
 
