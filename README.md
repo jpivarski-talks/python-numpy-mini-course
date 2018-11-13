@@ -20,7 +20,13 @@ General intention; we'll vary from this if there's good reason to do so.
 
 ### How to prepare
 
-Install Anaconda or [Miniconda for Python 3](https://conda.io/miniconda.html). Using that, install Jupyter (Lab or Notebook; I prefer Lab):
+(1) Check out this repository:
+
+```
+git clone https://github.com/jpivarski/python-numpy-mini-course.git
+```
+
+(2) Install Anaconda or [Miniconda for Python 3](https://conda.io/miniconda.html). Using that, install Jupyter (Lab or Notebook; I prefer Lab):
 
 ```
 conda install jupyterlab
@@ -42,3 +48,11 @@ conda install cupy cudatoolkit                      # 7-gpu
 export CFLAGS=-fpermissive
 pip install --no-cache-dir pycuda
 ```
+
+General Python programming skills will be assumed (ability to read or write a page-long script without difficulty). Walk through an online tutorial if you need to brush up before the course.
+
+Knowedge of the libraries presented here _will not_ be assumed. Come and learn!
+
+### Pre-evaluated notebooks
+
+You'll get the most out of the course if you follow along in the blank notebooks in the master branch of this repository. However, if you're returning to look up a result, pre-evaluated copies of all the notebooks can be found on the [evaluated branch](https://github.com/jpivarski/python-numpy-mini-course/tree/evaluated) of this repository.
