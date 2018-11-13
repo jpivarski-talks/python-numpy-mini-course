@@ -14,4 +14,31 @@ Jim Pivarski received his Ph.D. in high-energy particle physics from Cornell in 
 
 ### Plan for the day
 
+General intention; we'll vary from this if there's good reason to do so.
+
 ![](img/plan-for-the-day.png)
+
+### How to prepare
+
+Install Anaconda or [Miniconda for Python 3](https://conda.io/miniconda.html). Using that, install Jupyter (Lab or Notebook; I prefer Lab):
+
+```
+conda install jupyterlab
+```
+
+Installations for the sessions are given at the top of each notebook, but if you want to install everything at once, instructions are collected below. Most of these are already bundled in the full Anaconda distribution.
+
+```
+conda install numpy                                 # 2-just-numpy
+conda install pandas matplotlib                     # 4-pandas
+conda install dask distrubted -c conda-forge        # 5-dask
+conda install numba cython                          # 6-compilers
+```
+
+Don't bother installing softare for the GPU session if you don't have an NVidia GPU with the CUDA development kit installed.
+
+```
+conda install cupy cudatoolkit                      # 7-gpu
+export CFLAGS=-fpermissive
+pip install --no-cache-dir pycuda
+```
