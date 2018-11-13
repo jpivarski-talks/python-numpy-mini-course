@@ -36,7 +36,7 @@ Change directories into the repository and start Jupyter Lab or Notebook:
 
 ```
 cd python-numpy-mini-course
-jupyter lab                   # or notebook
+jupyter lab        # or notebook
 ```
 
 Installations for the sessions are given at the top of each notebook, but if you want to install everything at once, instructions are collected below. Most of these are already bundled in the full Anaconda distribution.
