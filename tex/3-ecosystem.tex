@@ -57,15 +57,25 @@
 
 % START START START START START START START START START START START START START
 
-\begin{frame}{The ecosystem: a vague word for a vague thing}
-\vspace{0.27 cm}
+\begin{frame}{This afternoon}
+\large
+\vspace{0.5 cm}
+This morning, we focused on just one library--- Numpy--- and worked on putting its slicing interfaces together to achieve things you'd normally need for loops for.
+
+\vspace{1 cm}
+\uncover<2->{\Large This afternoon, we switch to\ldots}
+\end{frame}
+
+\begin{frame}{Everything else}
+\vspace{0.16 cm}
 \begin{columns}
-\column{0.74\linewidth}
+\column{1.14\linewidth}
+\vspace{-4 cm}
 \includegraphics[width=\linewidth]{shells-5.png}
 \end{columns}
 \end{frame}
 
-\begin{frame}{What we'll talk about this afternoon}
+\begin{frame}{Specific topics}
 \vspace{0.3 cm}
 \begin{block}{Statistics tools}
 \begin{itemize}
@@ -92,42 +102,149 @@
 \end{frame}
 
 \begin{frame}{Speeding up code}
-\large
 \vspace{0.5 cm}
-There is a mantra regarding performance tuning:
+Fast software is not like a fast runner, who has some superior intrinsic ability. \\ All run at the same rate, but some have more hurdles on the track than others.
+
+\vspace{0.25 cm}
 \begin{center}
-\it Premature optimization is the root of all evil.
+\includegraphics[width=0.7\linewidth]{hurdle9.jpg}
 \end{center}
-
-\normalsize
-\vspace{0.5 cm}
-\uncover<2->{\textcolor{darkblue}{It's mostly correct.} Mechanations to increase speed or reduce memory can muddle the intent of the code and even be counterproductive. Your processor, operating system, compiler, and maybe framework are all trying to optimize it for you--- doing weird things can confuse these systems.}
-
-\vspace{0.5 cm}
-\uncover<3->{\textcolor{darkblue}{It's not always correct.} Sometimes, you have to think about performance up front to design a sensible workflow, and sometimes factors of 1000's are at stake.}
 \end{frame}
 
-\begin{frame}{Speeding up code}
+\begin{frame}{Hurdles, from smallest to largest}
 \large
-\vspace{0.35 cm}
-\begin{columns}
-\column{0.8\linewidth}
-\begin{center}
-An ideal code optimization library would be transparent: \\ same code, just faster.
+\begin{columns}[t]
+\column{0.5\linewidth}
+\begin{enumerate}\setlength{\itemsep}{0.35 cm}
+\item Unnecessary or repeated arithmetic
+\item Arithmetic in separate instructions that could be in the same instruction (vectorization)
+\item Transcendental functions or division
+\item Unnecessary or nonsequential memory access; cache swapping
+\end{enumerate}
 
-\vspace{0.25 cm}
-\uncover<2->{You never know how much it will help until you try it, so you want the barrier to entry to be as small as possible. You also want an easy way to back out if you find you don't want it.}
-
-\vspace{0.25 cm}
-\uncover<3->{Ideally, it would also be general: apply to all of your code \\ so that you don't have to pick out hotspots.}
-
-\vspace{0.25 cm}
-\uncover<4->{But if we had a completely general, transparent optimizer, \\ we would just use that exclusively.}
-
-\vspace{0.25 cm}
-\uncover<5->{\textcolor{darkblue}{PyPy} aims to be fully general and transparent, but it doesn't support all the compiled modules built for standard Python.}
-\end{center}
+\column{0.5\linewidth}
+\begin{enumerate}\setlength{\itemsep}{0.35 cm}\setcounter{enumi}{4}
+\item Virtual machine indirection
+\item Boxing numbers as objects
+\item Type checking at runtime
+\item Unnecessary or nonsequential disk/network access
+\item Wacky stuff
+\end{enumerate}
 \end{columns}
+
+\vspace{0.5 cm}
+\uncover<2->{Compilation optimizes away most of \textcolor{darkblue}{\#1}, \textcolor{darkblue}{\#2}, and \textcolor{darkblue}{\#4}.}
+
+\vspace{0.2 cm}
+\uncover<3->{GPUs focus on \textcolor{darkblue}{\#2} and \textcolor{darkblue}{\#4} (by putting memory close to processing).}
+
+\vspace{0.2 cm}
+\uncover<4->{Python is guilty of \textcolor{darkblue}{\#4}, \textcolor{darkblue}{\#5}, \textcolor{darkblue}{\#6}, and \textcolor{darkblue}{\#7} (Java only \textcolor{darkblue}{\#4}, \textcolor{darkblue}{\#5}, and half of \textcolor{darkblue}{\#6}).}
 \end{frame}
+
+\begin{frame}{Optimization is about trade-offs}
+\large
+\vspace{0.5 cm}
+We're here because we like the productivity Python gives us in exchange for \\ \textcolor{darkblue}{\#4}, \textcolor{darkblue}{\#5}, \textcolor{darkblue}{\#6}, and \textcolor{darkblue}{\#7}.
+
+\vspace{0.5 cm}
+\begin{uncoverenv}<2->
+Ideally, we'd like a library that makes Python code fast without modification.
+\begin{itemize}
+\item I don't know how much speedup I'll get until I apply it; but that costs effort.
+\item If I've applied it and I don't like it, I want to easily remove it.
+\end{itemize}
+\end{uncoverenv}
+
+\vspace{0.5 cm}
+\uncover<3->{If we had such a thing, though, when would we ever {\it not} use it?}
+
+\vspace{0.2 cm}
+\uncover<4->{\textcolor{darkgray}{Example: PyPy, a reimplementation of Python with just-in-time (JIT) compilation. If it works, we'd only use that. It doesn't yet work with all extension modules, though.}}
+\end{frame}
+
+\begin{frame}{Horizontal and vertical scaling}
+\Large
+\vspace{0.5 cm}
+\begin{description}
+\item[\bf Horizontal:] split up task and distribute among parallel workers.
+\end{description}
+
+\large
+\uncover<2->{\textcolor{darkgray}{Oddly, this speedup is rarely proportional to the number of workers, even when work is independent, due to bookkeeping overhead and shipping data.}}
+
+\vspace{1 cm}
+\Large
+\begin{description}
+\item[\bf Vertical:] use hardware more effectively by removing hurdles.
+\end{description}
+
+\large
+\uncover<3->{\textcolor{darkgray}{Plateaus as you get close to optimum. More effort yields diminishing returns.}}
+\end{frame}
+
+\begin{frame}{Why cover Pandas in an afternoon about performance?}
+\large
+\begin{center}
+\includegraphics[width=0.5\linewidth]{pandas-logo.png}
+\end{center}
+
+\vspace{0.25 cm}
+Pandas is about simplifying data analysis, and it does so by translating the array programming style from Numpy to domain concepts: timestamps, categorical data, relational data, etc.
+
+\vspace{0.5 cm}
+\uncover<2->{It's like a spreadsheet that uses Numpy arrays instead of graphical cells.}
+
+\vspace{0.5 cm}
+\uncover<3->{It's not as fast as Numpy or the other accelerators I'll show, but it benefits from the conciseness of the same Numpythonic mindset.}
+\end{frame}
+
+\begin{frame}{}
+\LARGE
+\vspace{1.5 cm}
+\begin{center}
+So without further ado\ldots
+\end{center}
+\end{frame}
+
+
+%% \begin{frame}{Speeding up code}
+%% \large
+%% \vspace{0.5 cm}
+%% There is a mantra regarding performance tuning:
+%% \begin{center}
+%% \it Premature optimization is the root of all evil.
+%% \end{center}
+
+%% \normalsize
+%% \vspace{0.5 cm}
+%% \uncover<2->{\textcolor{darkblue}{It's mostly correct.} Mechanations to increase speed or reduce memory can muddle the intent of the code and even be counterproductive. Your processor, operating system, compiler, and maybe framework are all trying to optimize it for you--- doing weird things can confuse these systems.}
+
+%% \vspace{0.5 cm}
+%% \uncover<3->{\textcolor{darkblue}{It's not always correct.} Sometimes, you have to think about performance up front to design a sensible workflow, and sometimes factors of 1000's are at stake.}
+%% \end{frame}
+
+%% \begin{frame}{Speeding up code}
+%% \large
+%% \vspace{0.35 cm}
+%% \begin{columns}
+%% \column{0.8\linewidth}
+%% \begin{center}
+%% An ideal code optimization library would be transparent: \\ same code, just faster.
+
+%% \vspace{0.25 cm}
+%% \uncover<2->{You never know how much it will help until you try it, so you want the barrier to entry to be as small as possible. You also want an easy way to back out if you find you don't want it.}
+
+%% \vspace{0.25 cm}
+%% \uncover<3->{Ideally, it would also be general: apply to all of your code \\ so that you don't have to pick out hotspots.}
+
+%% \vspace{0.25 cm}
+%% \uncover<4->{But if we had a completely general, transparent optimizer, \\ we would just use that exclusively.}
+
+%% \vspace{0.25 cm}
+%% \uncover<5->{\textcolor{darkblue}{PyPy} aims to be fully general and transparent, but it doesn't support all the compiled modules built for standard Python.}
+%% \end{center}
+%% \end{columns}
+%% \end{frame}
 
 \end{document}
